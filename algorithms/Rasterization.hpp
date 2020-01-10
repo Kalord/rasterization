@@ -4,6 +4,7 @@
 #include <utility>
 #include <algorithm>
 #include <iostream>
+#include <sys/types.h>
 
 #include "../core/BitMap.hpp"
 

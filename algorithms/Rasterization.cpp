@@ -14,16 +14,16 @@ void Rasterization::DDALine(
     const int XEnd   = twoPoint.first;
     const int YEnd   = twoPoint.second;
 
-    int LStep = std::max(
+    u_int LStep = std::max(
         std::abs(XEnd - XStart), 
         std::abs(YEnd - YStart)
-    );
+    ) + 1;
 
     float x = onePoint.first;
     float y = onePoint.second;
 
-    float dX = (XEnd - XStart) / LStep;
-    float dY = (YEnd - YStart) / LStep;
+    float dX = (float)(XEnd - XStart) / LStep;
+    float dY = (float)(YEnd - YStart) / LStep;
 
     while(LStep)
     {

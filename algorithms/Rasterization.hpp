@@ -23,5 +23,9 @@ public:
     /**
      * Алгоритм Брезенхэма
      **/
-    static void bresenham(BitMap& bitMap);
+    static void bresenham(
+        BitMap& bitMap,
+        std::pair<float, float> onePoint,
+        std::pair<float, float> twoPoint
+    );
 };

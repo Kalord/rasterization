@@ -32,5 +32,44 @@ void Rasterization::DDALine(
         y += dY;
 
         LStep--;
+    }
+}
+
+/**
+ * Алгоритм Брезенхэма
+ **/
+void Rasterization::bresenham(
+    BitMap& bitMap,
+    std::pair<float, float> onePoint,
+    std::pair<float, float> twoPoint
+)
+{
+    int XStart = onePoint.first;
+    int YStart = onePoint.second;
+    int XEnd   = twoPoint.first;
+    int YEnd   = twoPoint.second;
+
+    const int deltaX = std::abs(XEnd - XStart);
+    const int deltaY = std::abs(YEnd - YStart);
+    const int8_t signX = XStart < XEnd ? 1 : -1;
+    const int8_t signY = YStart < YEnd ? 1 : -1;
+
+    int error = deltaX - deltaY;
+    bitMap.putPixel(XEnd, YEnd);
+
+    while(XStart != XEnd || YStart != YEnd) 
+    {
+        bitMap.putPixel(XStart, YStart);
+        const int errorTwo = error * 2;
+        if(errorTwo > -deltaY) 
+        {
+            error -= deltaY;
+            XStart += signX;
+        }
+        if(errorTwo < deltaX) 
+        {
+            error += deltaX;
+            YStart += signY;
+        }
     } 
 }
